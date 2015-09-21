@@ -22,15 +22,15 @@
  * constants.
  */
 
-#ifdef _MSC_VER
-#define int32_t __int32
-#define int64_t __int64
-#define uint32_t unsigned __int32
-#define uint64_t unsigned __int64
-#define uint8_t unsigned __int8
-#else
+//#ifdef _MSC_VER
+//#define int32_t __int32
+//#define int64_t __int64
+//#define uint32_t unsigned __int32
+//#define uint64_t unsigned __int64
+//#define uint8_t unsigned __int8
+//#else
 #include <stdint.h>
-#endif
+//#endif
 
 /**
  * \addtogroup liblo

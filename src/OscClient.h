@@ -20,9 +20,9 @@
 #include <memory>
 #include <string>
 
-#include "cinder/Cinder.h"
+//#include "cinder/Cinder.h"
 
-#include "lo/lo.h"
+//#include "lo/lo.h"
 
 #include "OscCore.h"
 
@@ -41,7 +41,8 @@ class Client
  protected:
 	Client( const std::string &host, int port, Proto proto = PROTO_UDP );
 
-	lo_address mAddress;
+	//lo_address mAddress;
+  void* mAddress;
 };
 
 } } // namespace mndl::osc

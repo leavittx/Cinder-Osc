@@ -23,6 +23,8 @@
 #include "boost/lexical_cast.hpp"
 #include "boost/variant.hpp"
 
+#include "lo/lo.h"
+
 namespace mndl { namespace osc {
 
 typedef enum

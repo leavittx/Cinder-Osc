@@ -31,10 +31,11 @@ extern "C" {
 #include <stdarg.h>
 #ifdef _MSC_VER
 #define ssize_t SSIZE_T
-#define uint32_t unsigned __int32
-#else
-#include <stdint.h>
+//#define uint32_t unsigned __int32
+//#else
 #endif
+#include <stdint.h>
+//#endif
 
 #include "lo/lo_types.h"
 #include "lo/lo_errors.h"

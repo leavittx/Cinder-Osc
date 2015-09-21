@@ -21,11 +21,12 @@
 
 #ifdef _MSC_VER
 #define inline __inline
-#define uint64_t unsigned __int64
-#define uint32_t unsigned __int32
-#else
-#include <stdint.h>
 #endif
+//#define uint64_t unsigned __int64
+//#define uint32_t unsigned __int32
+//#else
+#include <stdint.h>
+//#endif
 
 #ifdef WIN32
 #include <winsock2.h>
