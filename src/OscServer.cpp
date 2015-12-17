@@ -23,7 +23,7 @@
 
 using namespace std;
 
-namespace mndl { namespace osc {
+namespace osc {
 
 Server::Server( int port, Proto proto /* = PROTO_UDP */ )
 {
@@ -93,4 +93,4 @@ int Server::implOscCallback( const char *path, const char *types, lo_arg **argv,
 
 uint32_t Server::sCallbackId = 0;
 
-} } // mndl::osc
+} // namespace osc

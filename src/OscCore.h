@@ -25,7 +25,7 @@
 
 #include "lo/lo.h"
 
-namespace mndl { namespace osc {
+namespace osc {
 
 typedef enum
 {
@@ -118,4 +118,4 @@ class Message
 	std::string mTypeTag;
 };
 
-} } // namespace mndl::osc
+} // namespace osc

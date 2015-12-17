@@ -22,14 +22,14 @@
 #include <map>
 #include <memory>
 
-#include "cinder/Cinder.h"
-#include "cinder/Function.h"
+//#include "cinder/Cinder.h"
+//#include "cinder/Function.h"
 
 #include "lo/lo.h"
 
 #include "OscCore.h"
 
-namespace mndl { namespace osc {
+namespace osc {
 
 typedef std::shared_ptr< class Server > ServerRef;
 typedef bool( Callback )( const osc::Message & );
@@ -78,4 +78,4 @@ class Server
 	std::map< uint32_t, std::pair< std::string, std::string > > mCallbackSpecs;
 };
 
-} } // mndl::osc
+} // namespace osc

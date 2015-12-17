@@ -26,7 +26,7 @@
 
 #include "OscCore.h"
 
-namespace mndl { namespace osc {
+namespace osc {
 
 typedef std::shared_ptr< class Client > ClientRef;
 
@@ -45,4 +45,4 @@ class Client
   void* mAddress;
 };
 
-} } // namespace mndl::osc
+} // namespace osc

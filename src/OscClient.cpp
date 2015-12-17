@@ -19,7 +19,7 @@
 
 #include "OscClient.h"
 
-namespace mndl { namespace osc {
+namespace osc {
 
 Client::Client( const std::string &host, int port, Proto proto /* = PROTO_UDP */ )
 {
@@ -56,4 +56,5 @@ void Client::send( const osc::Message &message )
 	lo_message_free( msg );
 }
 
-} } // mndl::osc
+} // namespace osc
+
