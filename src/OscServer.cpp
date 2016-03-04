@@ -15,6 +15,8 @@
  along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
+#define _WINSOCKAPI_    // stops windows.h including winsock.h
+
 #include "cinder/app/App.h"
 
 #include "boost/lexical_cast.hpp"
