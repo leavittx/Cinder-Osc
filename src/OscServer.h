@@ -28,8 +28,18 @@
 #include "lo/lo.h"
 
 #include "OscCore.h"
+#include "OscException.h"
 
 namespace osc {
+
+/// This exception is thrown by Server in case of error
+class ServerExc : public Exception 
+{
+public:
+  ServerExc()	{}
+  ServerExc(const std::string &description) : Exception(description)	{}
+};
+
 
 typedef std::shared_ptr< class Server > ServerRef;
 typedef bool( Callback )( const osc::Message & );

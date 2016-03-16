@@ -61,7 +61,42 @@ void Server::unregisterOscReceived( uint32_t callbackId )
 
 void Server::errorHandler( int num, const char *msg, const char *path )
 {
-	ci::app::console() << "liblo server error " << num << " in path " << path << ": " << msg << endl;
+  // Here was a crash (invalid data)
+	//ci::app::console() << "liblo server error " << num << " in path " << path << ": " << msg << endl;
+
+  // So I had to write it myself
+  
+  const string errorString = [&]()
+  {
+    const string prefix = "liblo server error: ";
+
+    map <int, string> loErrorToErrorString = { { 9901, "LO_ENOPATH" },
+                                               { 9902, "LO_ENOTYPE" },     
+                                               { 9903, "LO_UNKNOWNPROTO" },
+                                               { 9904, "LO_NOPORT" },
+                                               { 9905, "LO_TOOBIG" },
+                                               { 9906, "LO_INT_ERR" },
+                                               { 9907, "LO_EALLOC" },
+                                               { 9908, "LO_EINVALIDPATH" },
+                                               { 9909, "LO_EINVALIDTYPE" },
+                                               { 9910, "LO_EBADTYPE" },
+                                               { 9911, "LO_ESIZE" },
+                                               { 9912, "LO_EINVALIDARG" },
+                                               { 9913, "LO_ETERM" },
+                                               { 9914, "LO_EPAD" },
+                                               { 9915, "LO_EINVALIDBUND" },
+                                               { 9916, "LO_EINVALIDTIME" } };
+
+    auto it = loErrorToErrorString.find(num);
+    if (it != loErrorToErrorString.end())
+    {
+      return prefix + it->second;
+    }
+    return prefix + "unknown (code " + to_string(num) + ")";
+  }();
+
+  //cerr << "osc::Server::errorHandler: " << errorString << endl;
+  throw ServerExc(errorString);
 }
 
 int Server::implOscCallback( const char *path, const char *types, lo_arg **argv, int argc, void *data, void *userData )
