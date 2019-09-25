@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CinderOSC", "CinderOSC.vcxproj", "{485B8B84-F796-493E-BB1B-2AF8387368D5}"
 EndProject
@@ -19,8 +19,8 @@ Global
 		{485B8B84-F796-493E-BB1B-2AF8387368D5}.Debug|x64.Build.0 = Debug|x64
 		{485B8B84-F796-493E-BB1B-2AF8387368D5}.Release|Win32.ActiveCfg = Release|Win32
 		{485B8B84-F796-493E-BB1B-2AF8387368D5}.Release|Win32.Build.0 = Release|Win32
-		{485B8B84-F796-493E-BB1B-2AF8387368D5}.Release|x64.ActiveCfg = Release|Win32
-		{485B8B84-F796-493E-BB1B-2AF8387368D5}.Release|x64.Build.0 = Release|Win32
+		{485B8B84-F796-493E-BB1B-2AF8387368D5}.Release|x64.ActiveCfg = Release|x64
+		{485B8B84-F796-493E-BB1B-2AF8387368D5}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

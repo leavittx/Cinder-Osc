@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2004 Steve Harris
+ *  Copyright (C) 2014 Steve Harris et al. (see AUTHORS)
  *
  *  This program is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public License
@@ -22,15 +22,7 @@
  * constants.
  */
 
-//#ifdef _MSC_VER
-//#define int32_t __int32
-//#define int64_t __int64
-//#define uint32_t unsigned __int32
-//#define uint64_t unsigned __int64
-//#define uint8_t unsigned __int8
-//#else
 #include <stdint.h>
-//#endif
 
 /**
  * \addtogroup liblo
@@ -47,6 +39,18 @@ typedef struct {
          * of a second */
 	uint32_t frac;
 } lo_timetag;
+
+/**
+ * \brief An enumeration of bundle element types liblo can handle.
+ *
+ * The element of a bundle can either be a message or an other bundle.
+ */
+typedef enum {
+	/** bundle element is a message */
+	LO_ELEMENT_MESSAGE = 1,
+	/** bundle element is a bundle */
+	LO_ELEMENT_BUNDLE = 2
+} lo_element_type;
 
 /**
  * \brief An enumeration of the OSC types liblo can send and receive.
@@ -125,16 +129,27 @@ typedef union {
     uint8_t    m[4];
 	/** OSC TimeTag value. */
     lo_timetag t;
+    /** Blob **/
+    struct {
+        int32_t size;
+        char data;
+    } blob;
 } lo_arg;
 
-/** \brief A timetag constant representing "now". */
 /* Note: No struct literals in MSVC */
 #ifdef _MSC_VER
+#ifndef USE_ANSI_C
+#define USE_ANSI_C
+#endif
+#endif
+
+/** \brief A timetag constant representing "now". */
+#if defined(USE_ANSI_C) || defined(DLL_EXPORT)
 lo_timetag lo_get_tt_immediate();
 #define LO_TT_IMMEDIATE lo_get_tt_immediate()
-#else
+#else // !USE_ANSI_C
 #define LO_TT_IMMEDIATE ((lo_timetag){0U,1U})
-#endif
+#endif // USE_ANSI_C
 
 /** @} */
 

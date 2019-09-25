@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2004 Steve Harris
+ *  Copyright (C) 2014 Steve Harris et al. (see AUTHORS)
  *
  *  This program is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public License
@@ -18,17 +18,9 @@
 #define LO_ENDIAN_H
 
 #include <sys/types.h>
-
-#ifdef _MSC_VER
-#define inline __inline
-#endif
-//#define uint64_t unsigned __int64
-//#define uint32_t unsigned __int32
-//#else
 #include <stdint.h>
-//#endif
 
-#ifdef WIN32
+#if defined(WIN32) || defined(_MSC_VER)
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #else
@@ -94,7 +86,12 @@ typedef union {
     } part;
 } lo_split64;
 
-static inline uint64_t lo_swap64(uint64_t x)
+#ifdef _MSC_VER
+#define LO_INLINE __inline
+#else
+#define LO_INLINE inline
+#endif
+static LO_INLINE uint64_t lo_swap64(uint64_t x)
 {
     lo_split64 in, out;
 
@@ -104,11 +101,30 @@ static inline uint64_t lo_swap64(uint64_t x)
 
     return out.all;
 }
+#undef LO_INLINE
+#endif
+
+/* When compiling for an Apple universal build, allow compile-time
+ * macros to override autoconf endianness settings. */
+#ifdef LO_BIGENDIAN
+#undef LO_BIGENDIAN
+#endif
+#if 0 == 2
+#ifdef __BIG_ENDIAN__
+#define LO_BIGENDIAN 1
+#else
+#ifdef __LITTLE_ENDIAN__
+#define LO_BIGENDIAN 0
+#else
+#error Unknown endianness during Apple universal build.
+#endif
+#endif
+#else
+#define LO_BIGENDIAN 0
 #endif
 
 /* Host to OSC and OSC to Host conversion macros */
-
-#if 0
+#if LO_BIGENDIAN
 #define lo_htoo16(x) (x)
 #define lo_htoo32(x) (x)
 #define lo_htoo64(x) (x)
@@ -126,12 +142,6 @@ static inline uint64_t lo_swap64(uint64_t x)
 
 #ifdef __cplusplus
 }
-#endif
-
-#ifdef _MSC_VER
-#undef inline
-#undef uint64_t
-#undef uint32_t
 #endif
 
 #endif
