@@ -12,3 +12,9 @@ samples/OscSender/scons/OscSenderApp
 samples/OscListener/scons/OscListenerApp
 
 *.sw[a-z]
+vc2013/CinderOSC/Debug/
+vc2013/CinderOSC/Release/
+vc2013/CinderOSC/x64/Release/
+vc2013/CinderOSC/.vs/
+vc2013/CinderOSC/CinderOSC.sdf
+vc2013/CinderOSC/CinderOSC.VC.db
